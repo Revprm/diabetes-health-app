@@ -38,6 +38,18 @@
                 </ul>
             </div>
 
+            <!-- Auth Buttons -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="/login"
+                    class="px-4 py-2 text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500 font-medium">
+                    Login
+                </a>
+                <a href="/register"
+                    class="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 dark:bg-green-500 dark:hover:bg-green-600 font-medium">
+                    Register
+                </a>
+            </div>
+
             <!-- Hamburger menu button -->
             <button id="menu-toggle"
                 class="lg:hidden text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
@@ -64,6 +76,13 @@
                 </li>
                 <li>
                     <a href="/contact" class="block hover:text-green-700 dark:hover:text-green-500">Contact Us</a>
+                </li>
+                <!-- Auth buttons for mobile -->
+                <li class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <a href="/login" class="block hover:text-green-700 dark:hover:text-green-500">Login</a>
+                </li>
+                <li>
+                    <a href="/register" class="block hover:text-green-700 dark:hover:text-green-500">Register</a>
                 </li>
             </ul>
         </div>
