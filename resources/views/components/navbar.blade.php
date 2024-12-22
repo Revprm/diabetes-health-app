@@ -18,19 +18,19 @@
                         </a>
                     </li>
                     <li class="shrink-0">
-                        <a href="/" title=""
+                        <a href="/resources" title=""
                             class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                             Resources
                         </a>                        
                     </li>
                     <li class="shrink-0">
-                        <a href="/" title=""
+                        <a href="/about" title=""
                             class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                             About
                         </a>                        
                     </li>
                     <li class="shrink-0">
-                        <a href="/" title=""
+                        <a href="/contact" title=""
                             class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                             Contact Us
                         </a>                        
@@ -57,13 +57,13 @@
                     <a href="/" class="block hover:text-green-700 dark:hover:text-green-500">Home</a>
                 </li>
                 <li>
-                    <a href="/" class="block hover:text-green-700 dark:hover:text-green-500">Resources</a>
+                    <a href="/resources" class="block hover:text-green-700 dark:hover:text-green-500">Resources</a>
                 </li>
                 <li>
-                    <a href="/" class="block hover:text-green-700 dark:hover:text-green-500">About</a>
+                    <a href="/about" class="block hover:text-green-700 dark:hover:text-green-500">About</a>
                 </li>
                 <li>
-                    <a href="/" class="block hover:text-green-700 dark:hover:text-green-500">Contact Us</a>
+                    <a href="/contact" class="block hover:text-green-700 dark:hover:text-green-500">Contact Us</a>
                 </li>
             </ul>
         </div>
