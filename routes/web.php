@@ -29,10 +29,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
-        return 'Welcome to the User Dashboard!';
+        return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/admin/dashboard', function () {
-        return 'Welcome to the Admin Dashboard!';
-    })->middleware('admin')->name('admin.dashboard');
+    Route::middleware('admin')->group(function () {
+        Route::get('/admin/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+    });
 });

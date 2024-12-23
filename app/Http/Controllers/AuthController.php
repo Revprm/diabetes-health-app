@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -16,20 +17,21 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+        $formFields = $request->validate([
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => 'required|confirmed|min:6'
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'is_admin' => false,
-        ]);
+        $formFields['password'] = bcrypt($formFields['password']);
 
-        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
+        $user = User::create($formFields);
+
+        Auth::login($user);
+        
+        session()->flash('success', 'Registration successful! Welcome aboard!');
+
+        return redirect('/dashboard');
     }
 
     public function showLoginForm()
