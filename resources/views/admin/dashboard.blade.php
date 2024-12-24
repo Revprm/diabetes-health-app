@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-admin>
     <x-slot name="title">Admin Dashboard</x-slot>
     <x-slot name="meta">
         <meta name="description" content="Admin Dashboard - Manage application and users">
@@ -10,4 +10,4 @@
             <p class="text-lg text-gray-300 mt-2">Manage the application and user data</p>
         </header>
     </div>
-</x-layout>
+</x-layout-admin>
