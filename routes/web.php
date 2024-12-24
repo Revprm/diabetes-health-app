@@ -32,7 +32,15 @@ Route::middleware('auth')->group(function () {
         return view('user.dashboard');
     })->name('user.dashboard');
     
+    Route::get('/user/setting', function () {
+        return view('user.setting');
+    })->name('user.setting');
+    
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+    
+    Route::get('/admin/setting', function () {
+        return view('admin.setting');
+    })->name('admin.setting');
 });
