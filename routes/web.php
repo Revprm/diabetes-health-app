@@ -30,11 +30,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/user/dashboard', function () {
         return view('user.dashboard');
-    })->name('dashboard');
-
-    Route::middleware('admin')->group(function () {
-        Route::get('/admin/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('admin.dashboard');
-    });
+    })->name('user.dashboard');
+    
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
 });
