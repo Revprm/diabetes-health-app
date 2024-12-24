@@ -20,18 +20,18 @@ class AuthController extends Controller
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => 'required|confirmed|min:6'
+            'password' => 'required|confirmed|min:6',
         ]);
 
-        $formFields['password'] = bcrypt($formFields['password']);
+        $formFields['password'] = Hash::make($formFields['password']);
 
         $user = User::create($formFields);
 
         Auth::login($user);
-        
+
         session()->flash('success', 'Registration successful! Welcome aboard!');
 
-        return redirect('/dashboard');
+        return redirect('/user');
     }
 
     public function showLoginForm()
@@ -49,11 +49,13 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
 
+            session()->flash('success', 'Welcome back, ' . $user->name . '!');
+
             if ($user->is_admin) {
-                return redirect()->intended('/dashboard');  // todo make the admin dashboard
+                return redirect()->intended('/admin/dashboard');
             }
 
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/user/dashboard');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials.']);
@@ -64,6 +66,8 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        session()->flash('success', 'You have been logged out successfully.');
 
         return redirect()->route('login');
     }
