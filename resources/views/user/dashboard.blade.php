@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-user>
     <x-slot name="title">User Dashboard</x-slot>
     <x-slot name="meta">
         <meta name="description" content="User Dashboard - Personalized insights and features">
@@ -10,4 +10,4 @@
             <p class="text-lg text-gray-300 mt-2">Here you can manage your personal health data</p>
         </header>
     </div>
-</x-layout>
+</x-layout-user>
