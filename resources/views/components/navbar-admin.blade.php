@@ -55,7 +55,7 @@
                         </button>
                         <div id="dropdown-menu"
                             class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg dark:bg-gray-800">
-                            <a href="/settings"
+                            <a href="/admin/setting"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
                                 Settings
                             </a>
@@ -129,7 +129,7 @@
                     </svg>
                 </button>
                 <div id="mobile-dropdown-menu" class="hidden mt-2 w-48 bg-white rounded-md shadow-lg dark:bg-gray-800">
-                    <a href="/settings"
+                    <a href="/admin/setting"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
                         Settings
                     </a>
