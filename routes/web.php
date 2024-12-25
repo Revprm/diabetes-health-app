@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SettingsController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -35,7 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/setting', function () {
         return view('user.setting');
     })->name('user.setting');
-    
+
+    Route::post('/user/setting', [SettingsController::class, 'update'])->name('user.setting.update');
+
+
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
@@ -43,4 +47,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/setting', function () {
         return view('admin.setting');
     })->name('admin.setting');
+
+    Route::post('/admin/setting', [SettingsController::class, 'update'])->name('admin.setting.update');
 });
