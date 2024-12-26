@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -44,9 +45,16 @@ Route::middleware('auth')->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
     
+    // Admin Settings Page
     Route::get('/admin/setting', function () {
         return view('admin.setting');
     })->name('admin.setting');
 
     Route::post('/admin/setting', [SettingsController::class, 'update'])->name('admin.setting.update');
+
+    // Admin User Management Page
+    Route::get('/admin/user-management', [UserController::class, 'index'])->name('admin.userManagement');
+    Route::delete('/admin/user-management/{user}', [UserController::class, 'destroy'])->name('admin.userManagement.destroy');
+    Route::post('/admin/user-management', [UserController::class, 'store'])->name('admin.userManagement.store');
+    Route::post('/admin/user-management/{user}', [UserController::class, 'update'])->name('admin.userManagement.update');
 });
