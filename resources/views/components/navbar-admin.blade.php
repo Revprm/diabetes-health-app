@@ -18,7 +18,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" title=""
+                        <a href="{{ route('admin.userManagement') }}" title=""
                             class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                             User Management
                         </a>
