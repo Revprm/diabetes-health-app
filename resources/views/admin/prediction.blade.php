@@ -25,6 +25,7 @@
                         <thead>
                             <tr class="border-b border-gray-700">
                                 <th class="py-3 px-4 text-gray-300 font-semibold">ID</th>
+                                <th class="py-3 px-4 text-gray-300 font-semibold">User</th>
                                 <th class="py-3 px-4 text-gray-300 font-semibold">Age</th>
                                 <th class="py-3 px-4 text-gray-300 font-semibold">BMI</th>
                                 <th class="py-3 px-4 text-gray-300 font-semibold">Prediction</th>
@@ -42,14 +43,23 @@
                                     <td class="py-3 px-4 text-gray-300">
                                         <span
                                             class="px-2 py-1 text-sm rounded-full
-                                                @if ($prediction->prediction) bg-red-500/20 text-red-300
-                                                @else bg-green-500/20 text-green-300 @endif">
-                                            {{ $prediction->prediction ? 'Positive' : 'Negative' }}
+                                            @if ($prediction->prediction == '2') bg-red-500/20 text-red-300
+                                            @elseif ($prediction->prediction == '1') bg-yellow-500/20 text-yellow-300
+                                            @else bg-green-500/20 text-green-300 @endif">
+                                            @if ($prediction->prediction == '2')
+                                                High Risk
+                                            @elseif ($prediction->prediction == '1')
+                                                Moderate Risk
+                                            @else
+                                                Low Risk
+                                            @endif
                                         </span>
+
                                     </td>
                                     <td class="py-3 px-4 text-gray-300">{{ $prediction->confidence }}%</td>
                                     <td class="py-3 px-4 space-x-2">
-                                        <button onclick="showEditPredictionModal({{ $prediction->id }}, {{ json_encode($prediction) }})"
+                                        <button
+                                            onclick="showEditPredictionModal({{ $prediction->id }}, {{ json_encode($prediction) }})"
                                             class="inline-block px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors">
                                             Edit
                                         </button>
@@ -94,16 +104,19 @@
                         </div>
 
                         <div>
-                            <label for="create_prediction" class="block text-sm font-medium text-gray-300 mb-1">Prediction</label>
+                            <label for="create_prediction"
+                                class="block text-sm font-medium text-gray-300 mb-1">Prediction</label>
                             <select id="create_prediction" name="prediction"
                                 class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500">
-                                <option value="0">Negative</option>
-                                <option value="1">Positive</option>
+                                <option value="0">Low</option>
+                                <option value="1">Medium</option>
+                                <option value="2">High</option>
                             </select>
                         </div>
 
                         <div>
-                            <label for="create_confidence" class="block text-sm font-medium text-gray-300 mb-1">Confidence (%)</label>
+                            <label for="create_confidence"
+                                class="block text-sm font-medium text-gray-300 mb-1">Confidence (%)</label>
                             <input type="number" id="create_confidence" name="confidence" step="0.01"
                                 class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
                                 required>
