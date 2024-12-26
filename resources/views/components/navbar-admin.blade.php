@@ -24,7 +24,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" title=""
+                        <a href="{{ route('admin.predictions') }}" title=""
                             class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                             Predictions
                         </a>
@@ -101,12 +101,12 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                <a href="{{ route('admin.userManagement') }}" class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                     User Management
                 </a>
             </li>
             <li>
-                <a href="#" class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                <a href="{{ route('admin.predictions') }}" class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                     Predictions
                 </a>
             </li>

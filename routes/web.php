@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/dashboard', function () {
         return view('user.dashboard');
     })->name('user.dashboard');
-    
+
     Route::get('/user/setting', function () {
         return view('user.setting');
     })->name('user.setting');
@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
-    
+
     // Admin Settings Page
     Route::get('/admin/setting', function () {
         return view('admin.setting');
@@ -57,4 +57,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/user-management/{user}', [UserController::class, 'destroy'])->name('admin.userManagement.destroy');
     Route::post('/admin/user-management', [UserController::class, 'store'])->name('admin.userManagement.store');
     Route::post('/admin/user-management/{user}', [UserController::class, 'update'])->name('admin.userManagement.update');
+
+
+    // Admin Predictions Page
+    Route::get('/admin/predictions', function () {
+        return view('admin.predictions');
+    })->name('admin.predictions');
 });
