@@ -11,7 +11,7 @@ class PredictionController extends Controller
 {
     public function index()
     {
-        $predictions = PredictionHistory::all();
+        $predictions = PredictionHistory::with('user')->get();
         $users = User::all();
         return view('admin.prediction', compact('predictions', 'users'));
     }

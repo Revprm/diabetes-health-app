@@ -36,6 +36,7 @@
                             @foreach ($predictions as $prediction)
                                 <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
                                     <td class="py-3 px-4 text-gray-300">{{ $prediction->id }}</td>
+                                    <td class="py-3 px-4 text-gray-300">{{ $prediction->user->name ?? 'N/A' }}</td>
                                     <td class="py-3 px-4 text-gray-300">{{ $prediction->Age }}</td>
                                     <td class="py-3 px-4 text-gray-300">{{ $prediction->BMI }}</td>
                                     <td class="py-3 px-4 text-gray-300">
