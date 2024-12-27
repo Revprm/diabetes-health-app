@@ -64,5 +64,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/prediction', [PredictionController::class, 'index'])->name('admin.prediction');
     Route::post('/admin/prediction', [PredictionController::class, 'store'])->name('admin.prediction.store');
     Route::delete('/admin/prediction/{prediction}', [PredictionController::class, 'destroy'])->name('admin.prediction.destroy');
-    Route::post('/admin/prediction/{prediction}', [PredictionController::class, 'update'])->name('admin.prediction.update');
 });

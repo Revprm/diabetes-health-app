@@ -58,11 +58,6 @@
                                     </td>
                                     <td class="py-3 px-4 text-gray-300">{{ $prediction->confidence }}%</td>
                                     <td class="py-3 px-4 space-x-2">
-                                        <button
-                                            onclick="showEditPredictionModal({{ $prediction->id }}, {{ json_encode($prediction) }})"
-                                            class="inline-block px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors">
-                                            Edit
-                                        </button>
                                         <button onclick="showDeletePredictionModal({{ $prediction->id }})"
                                             class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded transition-colors">
                                             Delete
@@ -137,4 +132,111 @@
             </div>
         </div>
     </div>
+
+    <div id="deletePredictionModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center"
+        tabindex="-1" role="dialog">
+        <div class="bg-gray-800 rounded-lg max-w-md w-full mx-4 shadow-2xl" role="document">
+            <div class="p-6">
+                <h3 class="text-xl font-semibold text-white mb-4">Delete Prediction</h3>
+                <p class="text-gray-300 mb-4">Are you sure you want to delete this prediction? This action cannot be
+                    undone.</p>
+
+                <form id="deletePredictionForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="closeDeletePredictionModal()"
+                            class="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors">
+                            Cancel
+                        </button>
+                        <button type="submit"
+                            class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors">
+                            Delete
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </x-layout-admin>
+
+<!-- Toast Messages for Success/Error -->
+@if (session('success'))
+    <div id="successToast"
+        class="fixed bottom-4 right-4 bg-emerald-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-500">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div id="errorToast"
+        class="fixed bottom-4 right-4 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-500">
+        {{ session('error') }}
+    </div>
+@endif
+
+<script>
+    function showCreatePredictionModal() {
+        const modal = document.getElementById('createPredictionModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        // Add event listener to close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeCreatePredictionModal();
+            }
+        });
+    }
+
+    function closeCreatePredictionModal() {
+        const modal = document.getElementById('createPredictionModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    // Optional: Add keyboard support for accessibility
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeCreatePredictionModal();
+        }
+    });
+
+    // Optional: Initialize any form reset logic when modal opens
+    document.getElementById('createPredictionForm')?.addEventListener('reset', () => {
+        closeCreatePredictionModal();
+    });
+
+    function showDeletePredictionModal(predictionId) {
+        const modal = document.getElementById('deletePredictionModal');
+        const form = document.getElementById('deletePredictionForm');
+
+        // Update form action URL
+        form.action = `/admin/prediction/${predictionId}`;
+
+        // Show modal
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        // Add click outside listener
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeDeletePredictionModal();
+            }
+        });
+    }
+
+    function closeDeletePredictionModal() {
+        const modal = document.getElementById('deletePredictionModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    // Add keyboard support
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeDeletePredictionModal();
+        }
+    });
+</script>

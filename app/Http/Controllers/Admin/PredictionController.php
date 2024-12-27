@@ -15,4 +15,26 @@ class PredictionController extends Controller
         $users = User::all();
         return view('admin.prediction', compact('predictions', 'users'));
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'BMI' => 'required|numeric',
+            'Age' => 'required|integer',
+            'prediction' => 'required|in:0,1,2',
+            'confidence' => 'required|numeric|min:0|max:100',
+        ]);
+
+        PredictionHistory::create($validated);
+
+        return redirect()->route('admin.prediction')->with('success', 'Prediction added successfully!');
+    }
+
+    public function destroy(PredictionHistory $prediction) // Changed parameter name to match route
+    {
+        $prediction->delete();
+
+        return redirect()->route('admin.prediction')->with('success', 'Prediction deleted successfully!');
+    }
 }
