@@ -14,10 +14,10 @@
             <div class="bg-gray-800 rounded-lg shadow-xl p-6">
                 <div class="mb-6 flex justify-between items-center">
                     <h2 class="text-xl text-white font-semibold">Prediction List</h2>
-                    <button onclick="showCreatePredictionModal()"
+                    <a href="{{ route('admin.prediction.create') }}"
                         class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors">
                         Add Prediction
-                    </button>
+                    </a>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -68,67 +68,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Prediction Modals -->
-    <div id="createPredictionModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center"
-        tabindex="-1" role="dialog">
-        <div class="bg-gray-800 rounded-lg max-w-md w-full mx-4 shadow-2xl" role="document">
-            <div class="p-6">
-                <h3 class="text-xl font-semibold text-white mb-4">Add New Prediction</h3>
-
-                <form id="createPredictionForm" action="{{ route('admin.prediction.store') }}" method="POST">
-                    @csrf
-                    @method('POST')
-                    <div class="space-y-4">
-                        <!-- Inputs for Prediction Features -->
-                        <div>
-                            <label for="create_bmi" class="block text-sm font-medium text-gray-300 mb-1">BMI</label>
-                            <input type="number" id="create_bmi" name="BMI"
-                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
-                                required>
-                        </div>
-
-                        <div>
-                            <label for="create_age" class="block text-sm font-medium text-gray-300 mb-1">Age</label>
-                            <input type="number" id="create_age" name="Age"
-                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
-                                required>
-                        </div>
-
-                        <div>
-                            <label for="create_prediction"
-                                class="block text-sm font-medium text-gray-300 mb-1">Prediction</label>
-                            <select id="create_prediction" name="prediction"
-                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500">
-                                <option value="0">Low</option>
-                                <option value="1">Medium</option>
-                                <option value="2">High</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="create_confidence"
-                                class="block text-sm font-medium text-gray-300 mb-1">Confidence (%)</label>
-                            <input type="number" id="create_confidence" name="confidence" step="0.01"
-                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
-                                required>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-end space-x-3 mt-6">
-                        <button type="button" onclick="closeCreatePredictionModal()"
-                            class="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors">
-                            Cancel
-                        </button>
-                        <button type="submit"
-                            class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors">
-                            Add Prediction
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

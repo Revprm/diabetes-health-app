@@ -10,21 +10,21 @@ class PredictionHistory extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'BMI',
+        'Age',
+        'prediction',
+        'confidence',
         'HighBP',
         'HighChol',
-        'BMI',
         'Stroke',
         'HeartDiseaseorAttack',
         'PhysActivity',
+        'DiffWalk',
         'GenHlth',
         'PhysHlth',
-        'DiffWalk',
-        'Age',
         'Education',
         'Income',
-        'prediction',
-        'confidence',
-        'user_id',
     ];
 
     public function user()
