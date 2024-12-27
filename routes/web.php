@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PredictionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingsController;
@@ -33,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/dashboard', function () {
         return view('user.dashboard');
     })->name('user.dashboard');
-    
+
     Route::get('/user/setting', function () {
         return view('user.setting');
     })->name('user.setting');
@@ -44,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
-    
+
     // Admin Settings Page
     Route::get('/admin/setting', function () {
         return view('admin.setting');
@@ -57,4 +58,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/user-management/{user}', [UserController::class, 'destroy'])->name('admin.userManagement.destroy');
     Route::post('/admin/user-management', [UserController::class, 'store'])->name('admin.userManagement.store');
     Route::post('/admin/user-management/{user}', [UserController::class, 'update'])->name('admin.userManagement.update');
+
+
+    // Admin Predictions Page
+    Route::get('/admin/prediction', [PredictionController::class, 'index'])->name('admin.prediction');
+    Route::get('/admin/prediction/create', [PredictionController::class, 'create'])->name('admin.prediction.create');
+    Route::post('/admin/prediction/create', [PredictionController::class, 'store'])->name('admin.prediction.store');
+    Route::delete('/admin/prediction/{prediction}', [PredictionController::class, 'destroy'])->name('admin.prediction.destroy');
 });
