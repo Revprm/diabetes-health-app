@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\UserPredictionController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -41,6 +42,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/user/setting', [SettingsController::class, 'update'])->name('user.setting.update');
 
+    Route::get('/user/predict', [UserPredictionController::class, 'index'])->name('user.predict');
+    Route::post('/user/predict/create', [UserPredictionController::class, 'predict'])->name('user.predict.create');
 
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
