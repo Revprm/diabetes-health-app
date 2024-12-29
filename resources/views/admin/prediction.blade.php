@@ -30,6 +30,7 @@
                                 <th class="py-3 px-4 text-gray-300 font-semibold">BMI</th>
                                 <th class="py-3 px-4 text-gray-300 font-semibold">Prediction</th>
                                 <th class="py-3 px-4 text-gray-300 font-semibold">Confidence</th>
+                                <th class="py-3 px-4 text-gray-300 font-semibold">Details</th>
                                 <th class="py-3 px-4 text-gray-300 font-semibold">Actions</th>
                             </tr>
                         </thead>
@@ -57,6 +58,46 @@
 
                                     </td>
                                     <td class="py-3 px-4 text-gray-300">{{ $prediction->confidence }}%</td>
+                                    <td class="py-3 px-4 text-gray-300">
+                                        <div><strong>High Blood Pressure:</strong> {{ $prediction->HighBP ? 'Yes' : 'No' }}</div>
+                                        <div><strong>High Cholesterol:</strong> {{ $prediction->HighChol ? 'Yes' : 'No' }}</div>
+                                        <div><strong>Stroke:</strong> {{ $prediction->Stroke ? 'Yes' : 'No' }}</div>
+                                        <div><strong>Heart Disease or Attack:</strong> {{ $prediction->HeartDiseaseorAttack ? 'Yes' : 'No' }}</div>
+                                        <div><strong>Physical Activity:</strong> {{ $prediction->PhysActivity ? 'Yes' : 'No' }}</div>
+                                        <div><strong>Difficulty Walking:</strong> {{ $prediction->DiffWalk ? 'Yes' : 'No' }}</div>
+                                        <div><strong>General Health:</strong>
+                                            @if($prediction->GenHlth == 1) Poor
+                                            @elseif($prediction->GenHlth == 2) Fair
+                                            @elseif($prediction->GenHlth == 3) Good
+                                            @elseif($prediction->GenHlth == 4) Very Good
+                                            @elseif($prediction->GenHlth == 5) Excellent
+                                            @else N/A
+                                            @endif
+                                        </div>
+                                        <div><strong>Physical Health (days):</strong> {{ $prediction->PhysHlth }}</div>
+                                        <div><strong>Education Level:</strong>
+                                            @if($prediction->Education == 1) No formal education
+                                            @elseif($prediction->Education == 2) Some High School
+                                            @elseif($prediction->Education == 3) High School Graduate
+                                            @elseif($prediction->Education == 4) Some College
+                                            @elseif($prediction->Education == 5) Bachelor's Degree
+                                            @elseif($prediction->Education == 6) Master's Degree or Higher
+                                            @else N/A
+                                            @endif
+                                        </div>
+                                        <div><strong>Income Level:</strong>
+                                            @if($prediction->Income == 1) Less than $10,000
+                                            @elseif($prediction->Income == 2) $10,000 - $19,999
+                                            @elseif($prediction->Income == 3) $20,000 - $29,999
+                                            @elseif($prediction->Income == 4) $30,000 - $39,999
+                                            @elseif($prediction->Income == 5) $40,000 - $49,999
+                                            @elseif($prediction->Income == 6) $50,000 - $59,999
+                                            @elseif($prediction->Income == 7) $60,000 - $69,999
+                                            @elseif($prediction->Income == 8) $70,000 or more
+                                            @else N/A
+                                            @endif
+                                        </div>
+                                    </td>
                                     <td class="py-3 px-4 space-x-2">
                                         <button onclick="showDeletePredictionModal({{ $prediction->id }})"
                                             class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded transition-colors">
