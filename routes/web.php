@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/setting', [SettingsController::class, 'update'])->name('user.setting.update');
 
     Route::get('/user/predict', [UserPredictionController::class, 'index'])->name('user.predict');
+    Route::get('/user/predict/create', [UserPredictionController::class, 'create'])->name('user.predict.create');
     Route::post('/user/predict/create', [UserPredictionController::class, 'predict'])->name('user.predict.create');
 
     Route::get('/admin/dashboard', function () {

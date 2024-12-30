@@ -12,14 +12,20 @@ class UserPredictionController extends Controller
     public function index()
     {
         $authUser = Auth::user();
-    
+
         $predictions = PredictionHistory::where('user_id', $authUser->id)->get();
-    
-        return view('user.prediction', compact('authUser', 'predictions'));
+
+        return view('user.prediction', compact('predictions'));
     }
-    
-    
-    
+
+    public function create()
+    {
+        $authUser = Auth::user();
+
+        return view('user.prediction-create', compact('authUser'));
+    }
+
+
     public function predict(Request $request)
     {
         $requestData = $request->validate([
@@ -37,6 +43,14 @@ class UserPredictionController extends Controller
             'Education' => 'required|in:1,2,3,4,5,6',
             'Income' => 'required|in:1,2,3,4,5,6,7,8',
         ]);
+
+        $requestData['HighBP'] = $requestData['HighBP'] ?? 0;
+        $requestData['HighChol'] = $requestData['HighChol'] ?? 0;
+        $requestData['Stroke'] = $requestData['Stroke'] ?? 0;
+        $requestData['HeartDiseaseorAttack'] = $requestData['HeartDiseaseorAttack'] ?? 0;
+        $requestData['PhysActivity'] = $requestData['PhysActivity'] ?? 0;
+        $requestData['DiffWalk'] = $requestData['DiffWalk'] ?? 0;
+
 
         $client = new Client();
         $url = 'http://127.0.0.1:8080/predict';
@@ -64,11 +78,11 @@ class UserPredictionController extends Controller
                 'Education' => $requestData['Education'],
                 'Income' => $requestData['Income'],
                 'prediction' => $responseBody['prediction'],
-                'confidence' => $responseBody['confidence'] ?? null, 
+                'confidence' => $responseBody['confidence'] ?? null,
                 'user_id' => Auth::id(),
             ]);
 
-            return response()->json([
+            return redirect()->route('user.predict')->with([
                 'status' => 'success',
                 'data' => $responseBody,
                 'history' => $predictionHistory,

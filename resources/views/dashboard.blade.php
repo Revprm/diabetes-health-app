@@ -72,7 +72,7 @@
                         Takes about 5 minutes
                     </div>
 
-                    <a href="#" 
+                    <a href="/user/predict/create" 
                        class="group inline-flex items-center px-4 py-2 w-full justify-center text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded hover:from-blue-500 hover:to-blue-400 transition-colors"
                        aria-label="Start Risk Prediction"
                     >
@@ -138,7 +138,7 @@
                         Last 6 months available
                     </div>
 
-                    <a href="#" 
+                    <a href="/user/predict" 
                        class="group inline-flex items-center px-4 py-2 w-full justify-center text-white bg-gradient-to-r from-yellow-600 to-yellow-500 rounded hover:from-yellow-500 hover:to-yellow-400 transition-colors"
                        aria-label="View Health History"
                     >
