@@ -27,8 +27,6 @@ class AuthController extends Controller
 
         $user = User::create($formFields);
 
-        Auth::login($user);
-
         session()->flash('success', 'Registration successful! Welcome aboard!');
 
         return redirect('/login');
@@ -48,7 +46,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
-
+            
             session()->flash('success', 'Welcome back, ' . $user->name . '!');
 
             if ($user->is_admin) {
