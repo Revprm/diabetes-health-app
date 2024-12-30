@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         $formFields['password'] = Hash::make($formFields['password']);
 
-        $user = User::create($formFields);
+        User::create($formFields);
 
         session()->flash('success', 'Registration successful! Welcome aboard!');
 
@@ -50,10 +50,10 @@ class AuthController extends Controller
             session()->flash('success', 'Welcome back, ' . $user->name . '!');
 
             if ($user->is_admin) {
-                return redirect()->intended('/admin/dashboard');
+                return redirect('/admin/dashboard');
             }
 
-            return redirect()->intended('/user/dashboard');
+            return redirect('/user/dashboard');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials.']);
