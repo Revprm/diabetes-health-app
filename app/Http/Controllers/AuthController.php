@@ -31,7 +31,7 @@ class AuthController extends Controller
 
         session()->flash('success', 'Registration successful! Welcome aboard!');
 
-        return redirect('/user');
+        return redirect('/login');
     }
 
     public function showLoginForm()
