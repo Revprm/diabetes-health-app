@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\UserPredictionController;
+use App\Http\Controllers\MainUserController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -32,9 +33,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user/dashboard', function () {
-        return view('user.dashboard');
-    })->name('user.dashboard');
+    Route::get('/user/dashboard', [MainUserController::class, 'index'])->name('user.dashboard');
 
     Route::get('/user/setting', function () {
         return view('user.setting');
