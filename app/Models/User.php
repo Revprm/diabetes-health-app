@@ -47,7 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function predictionhistory(): HasMany
+    public function predictionHistories(): HasMany
     {
         return $this->hasMany(PredictionHistory::class);
     }

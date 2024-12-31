@@ -1,4 +1,4 @@
-<x-layout-admin>
+<x-layout>
     <div class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-4 lg:p-6">
         <!-- Centered container for the form -->
         <div class="max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg space-y-6">
@@ -169,4 +169,4 @@
             </form>
         </div>
     </div>
-</x-layout-admin>
+</x-layout>

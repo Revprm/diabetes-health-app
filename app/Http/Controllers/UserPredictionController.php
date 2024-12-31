@@ -13,7 +13,7 @@ class UserPredictionController extends Controller
     {
         $authUser = Auth::user();
 
-        $predictions = PredictionHistory::where('user_id', $authUser->id)->get();
+        $predictions = PredictionHistory::where('user_id', $authUser->id)->get()->sortByDesc('created_at')->paginate(10);
 
         return view('user.prediction', compact('predictions'));
     }
