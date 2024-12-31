@@ -1,4 +1,4 @@
-<x-layout-user>
+<x-layout>
     <x-slot name="title">Prediction History</x-slot>
     <x-slot name="meta">
         <meta name="description" content="Submit and view your health data for predictions.">
@@ -96,4 +96,4 @@
             </div>
         </div>
     </div>
-</x-layout-user>
+</x-layout>

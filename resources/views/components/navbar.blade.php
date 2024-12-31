@@ -11,30 +11,88 @@
                     </a>
                 </div>
                 <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
-                    <li>
-                        <a href="/" title=""
-                            class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/resources" title=""
-                            class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                            Resources
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/about" title=""
-                            class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                            About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/contact" title=""
-                            class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                            Contact Us
-                        </a>
-                    </li>
+                    @if (Auth::check() && !Auth::user()->is_admin)
+                        <li>
+                            <a href="/"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/user/dashboard" title=""
+                                class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title=""
+                                class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Documentation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/user/predict" title=""
+                                class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Prediction
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title=""
+                                class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Support
+                            </a>
+                        </li>
+                    @elseif (Auth::check() && Auth::user()->is_admin)
+                        <li>
+                            <a href="/admin/dashboard"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.userManagement') }}"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                User Management
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.prediction') }}"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Predictions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Insight & Reports
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="/"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/resources"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Resources
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/contact"
+                                class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                                Contact Us
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
 
@@ -55,10 +113,17 @@
                         </button>
                         <div id="dropdown-menu"
                             class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg dark:bg-gray-800">
-                            <a href="/settings"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                Settings
-                            </a>
+                            @if (Auth::user()->is_admin)
+                                <a href="/admin/setting"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                                    Settings
+                                </a>
+                            @else
+                                <a href="/user/setting"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                                    Settings
+                                </a>
+                            @endif  
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
@@ -95,26 +160,88 @@
 
     <div id="mobile-menu" class="hidden lg:hidden px-4 py-4 bg-gray-100 dark:bg-gray-800">
         <ul class="flex flex-col space-y-4">
-            <li>
-                <a href="/" class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="/resources" class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                    Resources
-                </a>
-            </li>
-            <li>
-                <a href="/about" class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                    About
-                </a>
-            </li>
-            <li>
-                <a href="/contact" class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                    Contact Us
-                </a>
-            </li>
+            @if (Auth::check() && !Auth::user()->is_admin)
+                <li>
+                    <a href="/" title=""
+                        class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/dashboard" title=""
+                        class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title=""
+                        class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Documentation
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/predict" title=""
+                        class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Prediction
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title=""
+                        class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Support
+                    </a>
+                </li>
+            @elseif (Auth::check() && Auth::user()->is_admin)
+                <li>
+                    <a href="/admin/dashboard"
+                        class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.userManagement') }}"
+                        class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        User Management
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.prediction') }}"
+                        class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Predictions
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Insight & Reports
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="/"
+                        class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/resources"
+                        class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Resources
+                    </a>
+                </li>
+                <li>
+                    <a href="/about"
+                        class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="/contact"
+                        class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
+                        Contact Us
+                    </a>
+                </li>
+            @endif
         </ul>
         @auth
             <div class="mt-4">
@@ -129,10 +256,18 @@
                     </svg>
                 </button>
                 <div id="mobile-dropdown-menu" class="hidden mt-2 w-48 bg-white rounded-md shadow-lg dark:bg-gray-800">
-                    <a href="/settings"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                        Settings
-                    </a>
+                    @if (Auth::user()->is_admin)
+                        <a href="/admin/setting"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                            Settings
+                        </a>
+                    @else
+                        <a href="/user/setting"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                            Settings
+                        </a>
+                    @endif
+
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit"
