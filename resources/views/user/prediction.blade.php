@@ -41,7 +41,8 @@
                             @else
                                 @foreach ($predictions as $prediction)
                                     <tr class="border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
-                                        <td class="py-3 px-4 text-gray-300">{{ $prediction->created_at->format('Y-m-d') }}</td>
+                                        <td class="py-3 px-4 text-gray-300">
+                                            {{ $prediction->created_at->format('Y-m-d') }}</td>
                                         <td class="py-3 px-4 text-gray-300">{{ $prediction->Age }}</td>
                                         <td class="py-3 px-4 text-gray-300">{{ $prediction->BMI }}</td>
                                         <td class="py-3 px-4 text-gray-300">
@@ -85,13 +86,15 @@
                                                     Low Risk
                                                 @endif
                                             </span>
-    
                                         </td>
                                     </tr>
                                 @endforeach
                             @endif
                         </tbody>
                     </table>
+                    <div class="mt-6">
+                        {{ $predictions->links() }}
+                    </div>
                 </div>
             </div>
         </div>
