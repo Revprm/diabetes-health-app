@@ -101,7 +101,7 @@
                 <p class="text-blue-100 mb-6">
                     Start your journey to better health with our risk prediction tool.
                 </p>
-                <a href="#" 
+                <a href="/user/dashboard" 
                    class="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
                    aria-label="Get Started with Risk Prediction">
                     Get Started
