@@ -1,4 +1,4 @@
-<x-layout-admin>
+<x-layout>
     <x-slot name="title">User Management</x-slot>
     <x-slot name="meta">
         <meta name="description" content="User Management - Manage system users and permissions">
@@ -305,4 +305,4 @@
             }
         });
     </script>
-</x-layout-admin>
+</x-layout>
