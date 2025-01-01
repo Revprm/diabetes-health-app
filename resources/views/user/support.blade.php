@@ -37,7 +37,7 @@
             <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
                 <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Contact Us</h2>
                 <p class="text-gray-600 dark:text-gray-400 mb-4">Have questions or need help? Fill out the form below, and we'll get back to you soon.</p>
-                <form action="#" method="POST">
+                <form action="{{ route('support.store') }}" method="POST">
                     @csrf
                     <div class="grid grid-cols-1 gap-4 mb-4">
                         <div>
