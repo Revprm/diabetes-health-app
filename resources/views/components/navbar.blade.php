@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" title=""
+                            <a href="/user/support" title=""
                                 class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                                 Support
                             </a>
@@ -174,7 +174,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" title=""
+                    <a href="/user/support" title=""
                         class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                         Support
                     </a>
