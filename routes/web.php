@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/predict/create', [UserPredictionController::class, 'create'])->name('user.predict.create');
     Route::post('/user/predict/create', [UserPredictionController::class, 'predict'])->name('user.predict.create');
 
+    Route::get('/user/support', function () {
+        return view('user.support');
+    })->name('user.support');
+
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
