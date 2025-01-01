@@ -15,14 +15,14 @@ class ReportController extends Controller
 
     public function store(){
         $data = request()->validate([
-            'name' => 'required',
+            'name' => 'required|string',
             'email' => 'required|email',
-            'message' => 'required'
+            'message' => 'required|string'
         ]);
 
         $data['user_id'] = Auth::user()->id;
         Report::create($data);
-        return redirect()->route('user.support');
+        return redirect()->route('support.index');
     }
 
     public function show($id)
