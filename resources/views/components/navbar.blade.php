@@ -25,12 +25,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" title=""
-                                class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                                Documentation
-                            </a>
-                        </li>
-                        <li>
                             <a href="/user/predict" title=""
                                 class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                                 Prediction
@@ -171,12 +165,6 @@
                     <a href="/user/dashboard" title=""
                         class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                         Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#" title=""
-                        class="flex text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
-                        Documentation
                     </a>
                 </li>
                 <li>
