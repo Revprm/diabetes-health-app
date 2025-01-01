@@ -1,4 +1,4 @@
-<x-layout-admin>
+<x-layout>
     <x-slot name="title">Prediction History</x-slot>
     <x-slot name="meta">
         <meta name="description" content="Prediction History - View and manage your health predictions">
@@ -139,7 +139,7 @@
             </div>
         </div>
     </div>
-</x-layout-admin>
+</x-layout>
 
 <!-- Toast Messages for Success/Error -->
 @if (session('success'))
