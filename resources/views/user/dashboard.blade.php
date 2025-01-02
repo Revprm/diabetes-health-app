@@ -45,31 +45,52 @@
             </div>
         @endif
 
-        @if ($trends)
+        @if (!empty($trends))
             <div class="max-w-6xl mx-auto mb-8">
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
                     <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Health Trends</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
                             <span class="text-sm text-gray-500 dark:text-gray-400">BMI Trend</span>
-                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ $trends['bmi_trend'] }}
-                            </p>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">
+                                {{ $trends['bmi_trend'] ?? 'N/A' }}</p>
                         </div>
                         <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
                             <span class="text-sm text-gray-500 dark:text-gray-400">Health Trend</span>
-                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ $trends['health_trend'] }}
-                            </p>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">
+                                {{ $trends['health_trend'] ?? 'N/A' }}</p>
                         </div>
                         <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
                             <span class="text-sm text-gray-500 dark:text-gray-400">Risk Percentage</span>
                             <p class="text-xl font-semibold text-gray-900 dark:text-white">
-                                {{ number_format($trends['risk_percentage'], 2) }}%
+                                {{ number_format($trends['risk_percentage'] ?? 0, 2) }}%
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+        @else
+            <div class="max-w-6xl mx-auto mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Health Trends</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">BMI Trend</span>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">N/A</p>
+                        </div>
+                        <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Health Trend</span>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">N/A</p>
+                        </div>
+                        <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Risk Percentage</span>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">0%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endif
+
 
         <!-- Prediction History -->
         @if ($predictions->isNotEmpty())
@@ -124,7 +145,7 @@
                     <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">No Assessments Yet</h2>
                     <p class="text-gray-600 dark:text-gray-400 mb-4">Take your first health assessment to get started
                     </p>
-                    <a href="{{ route('prediction.create') }}"
+                    <a href="{{ route('user.predict.create') }}"
                         class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
                         Start Assessment
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

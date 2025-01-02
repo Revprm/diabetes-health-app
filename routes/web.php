@@ -7,6 +7,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\UserPredictionController;
 use App\Http\Controllers\MainUserController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -38,12 +39,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/setting', function () {
         return view('user.setting');
     })->name('user.setting');
-
     Route::post('/user/setting', [SettingsController::class, 'update'])->name('user.setting.update');
 
     Route::get('/user/predict', [UserPredictionController::class, 'index'])->name('user.predict');
     Route::get('/user/predict/create', [UserPredictionController::class, 'create'])->name('user.predict.create');
     Route::post('/user/predict/create', [UserPredictionController::class, 'predict'])->name('user.predict.create');
+
+    Route::get('/user/support', [ReportController::class, 'index'])->name('support.index');
+    Route::post('/user/support', [ReportController::class, 'store'])->name('support.store');
+    Route::get('/user/support/{id}', [ReportController::class, 'show'])->name('support.show');
 
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
