@@ -10,10 +10,15 @@ class ReportController extends Controller
 {
     public function index()
     {
-        return view('user.support');
+        $user = Auth::user();
+
+        $reports = Report::where('user_id', $user->id)->paginate(5);
+
+        return view('user.support', compact('reports'));
     }
 
-    public function store(){
+    public function store()
+    {
         $data = request()->validate([
             'name' => 'required|string',
             'email' => 'required|email',
@@ -28,6 +33,43 @@ class ReportController extends Controller
     public function show($id)
     {
         $report = Report::findOrFail($id);
-        return view('support.show', compact('report'));
+        return view('admin.support.show', compact('report'));
+    }
+
+    public function indexAdmin()
+    {
+
+        $reports = Report::latest()->paginate(5);
+
+        return view('admin.support.index', compact('reports'));
+    }
+    
+    public function respond(Report $report, Request $request)
+    {
+        if($report->resolved) {
+            return redirect()
+                ->route('admin.support', $report)
+                ->with('error', 'This report has already been resolved.');
+        }
+
+        if(!Auth::user()->is_admin){
+            return redirect()
+                ->route('/', $report)
+                ->with('error', 'You do not have permission to respond to this report.');
+        }
+
+        $validated = $request->validate([
+            'response' => 'required|string',
+        ]);
+
+        $report->update([
+            'response' => $validated['response'],
+            'resolved' => true,
+            'resolved_at' => now(),
+        ]);
+
+        return redirect()
+            ->route('admin.support', $report)
+            ->with('success', 'Response sent successfully.');
     }
 }
