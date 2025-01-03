@@ -10,7 +10,8 @@ class ReportController extends Controller
 {
     public function index()
     {
-        return view('user.support');
+        $reports = Report::latest()->paginate(10);
+        return view('user.support', compact('reports'));
     }
 
     public function store(){
