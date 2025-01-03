@@ -10,7 +10,10 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $reports = Report::latest()->paginate(10);
+        $user = Auth::user();
+
+        $reports = Report::where('user_id', $user->id)->paginate(5);
+        
         return view('user.support', compact('reports'));
     }
 

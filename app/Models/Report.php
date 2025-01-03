@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Report extends Model
 {
-    protected $fillable = ['name', 'email', 'message', 'user_id'];
+    protected $fillable = ['name', 'email', 'message', 'response', 'resolved', 'user_id'];
 
     public function user(): BelongsTo
     {
