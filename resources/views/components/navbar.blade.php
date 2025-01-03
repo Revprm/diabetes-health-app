@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('admin.support') }}"
                                 class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                                 Reports
                             </a>
@@ -199,7 +199,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{ route('admin.support') }}"
                         class="text-xl font-medium text-gray-900 hover:text-green-700 dark:text-white dark:hover:text-green-500">
                         Reports
                     </a>

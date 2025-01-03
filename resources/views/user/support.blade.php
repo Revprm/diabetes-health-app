@@ -122,8 +122,8 @@
                                                 {{ $report->name }}
                                             </h3>
                                             <span
-                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $report->responded_at ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100' }}">
-                                                {{ $report->responded_at ? 'Responded' : 'Pending' }}
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $report->resolved_at ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100' }}">
+                                                {{ $report->resolved_at ? 'Responded' : 'Pending' }}
                                             </span>
                                         </div>
                                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -141,9 +141,9 @@
                                         @endif
                                         <div class="mt-2 text-xs text-gray-400">
                                             Submitted: {{ $report->created_at->toFormattedDateString() }}
-                                            @if ($report->responded_at)
+                                            @if ($report->resolved_at)
                                                 <span class="ml-4">
-                                                    Responded: {{ $report->responded_at->toFormattedDateString() }}
+                                                    Responded: {{ $report->resolved_at->toFormattedDateString() }}
                                                 </span>
                                             @endif
                                         </div>
