@@ -72,4 +72,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/prediction/create', [PredictionController::class, 'create'])->name('admin.prediction.create');
     Route::post('/admin/prediction/create', [PredictionController::class, 'store'])->name('admin.prediction.store');
     Route::delete('/admin/prediction/{prediction}', [PredictionController::class, 'destroy'])->name('admin.prediction.destroy');
+
+    // Admin Support Page
+    Route::get('/admin/support', [ReportController::class, 'indexAdmin'])->name('admin.support');
+    Route::get('/admin/support/{id}', [ReportController::class, 'show'])->name('admin.support.show');
+    Route::post('/admin/support/{report}/respond', [ReportController::class, 'respond'])->name('admin.support.respond');
+
 });
