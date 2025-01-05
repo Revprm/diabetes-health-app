@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\PredictionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\UserPredictionController;
+use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\MainUserController;
 use App\Http\Controllers\ReportController;
 
@@ -41,9 +40,9 @@ Route::middleware('auth')->group(function () {
     })->name('user.setting');
     Route::post('/user/setting', [SettingsController::class, 'update'])->name('user.setting.update');
 
-    Route::get('/user/predict', [UserPredictionController::class, 'index'])->name('user.predict');
-    Route::get('/user/predict/create', [UserPredictionController::class, 'create'])->name('user.predict.create');
-    Route::post('/user/predict/create', [UserPredictionController::class, 'predict'])->name('user.predict.create');
+    Route::get('/user/predict', [PredictionController::class, 'indexUser'])->name('user.predict');
+    Route::get('/user/predict/create', [PredictionController::class, 'createUser'])->name('user.predict.create');
+    Route::post('/user/predict/create', [PredictionController::class, 'predictUser'])->name('user.predict.create');
 
     Route::get('/user/support', [ReportController::class, 'index'])->name('support.index');
     Route::post('/user/support', [ReportController::class, 'store'])->name('support.store');
@@ -68,10 +67,10 @@ Route::middleware('auth')->group(function () {
 
 
     // Admin Predictions Page
-    Route::get('/admin/prediction', [PredictionController::class, 'index'])->name('admin.prediction');
-    Route::get('/admin/prediction/create', [PredictionController::class, 'create'])->name('admin.prediction.create');
-    Route::post('/admin/prediction/create', [PredictionController::class, 'store'])->name('admin.prediction.store');
-    Route::delete('/admin/prediction/{prediction}', [PredictionController::class, 'destroy'])->name('admin.prediction.destroy');
+    Route::get('/admin/prediction', [PredictionController::class, 'indexAdmin'])->name('admin.prediction');
+    Route::get('/admin/prediction/create', [PredictionController::class, 'createAdmin'])->name('admin.prediction.create');
+    Route::post('/admin/prediction/create', [PredictionController::class, 'storeAdmin'])->name('admin.prediction.store');
+    Route::delete('/admin/prediction/{prediction}', [PredictionController::class, 'destroyAdmin'])->name('admin.prediction.destroy');
 
     // Admin Support Page
     Route::get('/admin/support', [ReportController::class, 'indexAdmin'])->name('admin.support');
