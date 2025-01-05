@@ -15,6 +15,30 @@ Route::get('/resources', function () {
     return view('resources');
 });
 
+Route::get('/resources/article', function () {
+    return view('article');
+});
+
+Route::get('/resources/article/understanding-diabetes', function () {
+    return view('article.understanding-diabetes');
+});
+
+Route::get('/resources/article/healthy-eating', function () {
+    return view('article.healthy-eating');
+});
+
+Route::get('/resources/article/effective-exercise', function () {
+    return view('article.effective-exercise');
+});
+
+Route::get('/resources/article/meal-planning', function () {
+    return view('article.meal-planning');
+});
+
+Route::get('/resources/article/stress-management', function () {
+    return view('article.stress-management');
+});
+
 Route::get('/about', function () {
     return view('about');
 });
