@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PredictionController;
-use App\Http\Controllers\MainUserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
@@ -33,7 +32,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user/dashboard', [MainUserController::class, 'index'])->name('user.dashboard');
+    Route::get('/user/dashboard', [UserController::class, 'indexUser'])->name('user.dashboard');
 
     Route::get('/user/setting', function () {
         return view('user.setting');
@@ -60,10 +59,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/setting', [SettingsController::class, 'update'])->name('admin.setting.update');
 
     // Admin User Management Page
-    Route::get('/admin/user-management', [UserController::class, 'index'])->name('admin.userManagement');
-    Route::delete('/admin/user-management/{user}', [UserController::class, 'destroy'])->name('admin.userManagement.destroy');
-    Route::post('/admin/user-management', [UserController::class, 'store'])->name('admin.userManagement.store');
-    Route::post('/admin/user-management/{user}', [UserController::class, 'update'])->name('admin.userManagement.update');
+    Route::get('/admin/user-management', [UserController::class, 'indexAdmin'])->name('admin.userManagement');
+    Route::delete('/admin/user-management/{user}', [UserController::class, 'destroyAdmin'])->name('admin.userManagement.destroy');
+    Route::post('/admin/user-management', [UserController::class, 'storeAdmin'])->name('admin.userManagement.store');
+    Route::post('/admin/user-management/{user}', [UserController::class, 'updateAdmin'])->name('admin.userManagement.update');
 
 
     // Admin Predictions Page
