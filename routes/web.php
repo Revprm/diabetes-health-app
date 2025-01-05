@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\PredictionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\UserPredictionController;
-use App\Http\Controllers\MainUserController;
+use App\Http\Controllers\PredictionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
@@ -34,16 +32,16 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user/dashboard', [MainUserController::class, 'index'])->name('user.dashboard');
+    Route::get('/user/dashboard', [UserController::class, 'indexUser'])->name('user.dashboard');
 
     Route::get('/user/setting', function () {
         return view('user.setting');
     })->name('user.setting');
     Route::post('/user/setting', [SettingsController::class, 'update'])->name('user.setting.update');
 
-    Route::get('/user/predict', [UserPredictionController::class, 'index'])->name('user.predict');
-    Route::get('/user/predict/create', [UserPredictionController::class, 'create'])->name('user.predict.create');
-    Route::post('/user/predict/create', [UserPredictionController::class, 'predict'])->name('user.predict.create');
+    Route::get('/user/predict', [PredictionController::class, 'indexUser'])->name('user.predict');
+    Route::get('/user/predict/create', [PredictionController::class, 'createUser'])->name('user.predict.create');
+    Route::post('/user/predict/create', [PredictionController::class, 'predictUser'])->name('user.predict.create');
 
     Route::get('/user/support', [ReportController::class, 'index'])->name('support.index');
     Route::post('/user/support', [ReportController::class, 'store'])->name('support.store');
@@ -61,17 +59,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/setting', [SettingsController::class, 'update'])->name('admin.setting.update');
 
     // Admin User Management Page
-    Route::get('/admin/user-management', [UserController::class, 'index'])->name('admin.userManagement');
-    Route::delete('/admin/user-management/{user}', [UserController::class, 'destroy'])->name('admin.userManagement.destroy');
-    Route::post('/admin/user-management', [UserController::class, 'store'])->name('admin.userManagement.store');
-    Route::post('/admin/user-management/{user}', [UserController::class, 'update'])->name('admin.userManagement.update');
+    Route::get('/admin/user-management', [UserController::class, 'indexAdmin'])->name('admin.userManagement');
+    Route::delete('/admin/user-management/{user}', [UserController::class, 'destroyAdmin'])->name('admin.userManagement.destroy');
+    Route::post('/admin/user-management', [UserController::class, 'storeAdmin'])->name('admin.userManagement.store');
+    Route::post('/admin/user-management/{user}', [UserController::class, 'updateAdmin'])->name('admin.userManagement.update');
 
 
     // Admin Predictions Page
-    Route::get('/admin/prediction', [PredictionController::class, 'index'])->name('admin.prediction');
-    Route::get('/admin/prediction/create', [PredictionController::class, 'create'])->name('admin.prediction.create');
-    Route::post('/admin/prediction/create', [PredictionController::class, 'store'])->name('admin.prediction.store');
-    Route::delete('/admin/prediction/{prediction}', [PredictionController::class, 'destroy'])->name('admin.prediction.destroy');
+    Route::get('/admin/prediction', [PredictionController::class, 'indexAdmin'])->name('admin.prediction');
+    Route::get('/admin/prediction/create', [PredictionController::class, 'createAdmin'])->name('admin.prediction.create');
+    Route::post('/admin/prediction/create', [PredictionController::class, 'storeAdmin'])->name('admin.prediction.store');
+    Route::delete('/admin/prediction/{prediction}', [PredictionController::class, 'destroyAdmin'])->name('admin.prediction.destroy');
 
     // Admin Support Page
     Route::get('/admin/support', [ReportController::class, 'indexAdmin'])->name('admin.support');
