@@ -17,28 +17,10 @@ class PredictionController extends Controller
         return view('admin.prediction', compact('predictions', 'users'));
     }
 
-    public function indexUser()
-    {
-        $authUser = Auth::user();
-
-        $predictions = PredictionHistory::where('user_id', $authUser->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);
-
-        return view('user.prediction', compact('predictions'));
-    }
-
     public function createAdmin()
     {
         $users = User::all();
         return view('admin.prediction-create', compact('users'));
-    }
-
-    public function createUser()
-    {
-        $authUser = Auth::user();
-
-        return view('user.prediction-create', compact('authUser'));
     }
 
     public function storeAdmin(Request $request)
@@ -85,6 +67,31 @@ class PredictionController extends Controller
 
 
         return redirect()->route('admin.prediction')->with('success', 'Prediction created successfully!');
+    }
+
+    public function destroyAdmin(PredictionHistory $prediction)
+    {
+        $prediction->delete();
+
+        return redirect()->route('admin.prediction')->with('success', 'Prediction deleted successfully!');
+    }
+
+    public function indexUser()
+    {
+        $authUser = Auth::user();
+
+        $predictions = PredictionHistory::where('user_id', $authUser->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
+        return view('user.prediction', compact('predictions'));
+    }
+
+    public function createUser()
+    {
+        $authUser = Auth::user();
+
+        return view('user.prediction-create', compact('authUser'));
     }
 
     public function predictUser(Request $request)
@@ -152,12 +159,5 @@ class PredictionController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
-    }
-
-    public function destroyAdmin(PredictionHistory $prediction)
-    {
-        $prediction->delete();
-
-        return redirect()->route('admin.prediction')->with('success', 'Prediction deleted successfully!');
     }
 }
