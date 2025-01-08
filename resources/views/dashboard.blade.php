@@ -38,7 +38,7 @@
                     {{-- Do nothing --}}
                 @else
                     <a href="/login"
-                        class="inline-flex items-center px-6 py-3 text-white bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                        class="inline-flex items-center px-6 py-3 text-white dark:bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
                         Sign In
                     </a>
                 @endif
