@@ -49,23 +49,18 @@
             <section
                 class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 border-l-4 border-green-400 transition-transform hover:scale-105">
                 <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Tools & Calculators
+                    BMI Calculator
                 </h2>
 
                 <div class="space-y-4">
                     <p class="text-gray-600 dark:text-gray-400">
-                        Utilize helpful tools like BMI calculators and meal planners to better understand and manage
-                        your health.
+                        Quickly calculate your Body Mass Index (BMI) to better understand your health.
                     </p>
 
-                    <p class="text-sm text-gray-500">
-                        5 tools available
-                    </p>
-
-                    <a href="#"
+                    <a href="/resources/tools/bmi-calculator"
                         class="group inline-flex items-center px-4 py-2 text-white bg-gradient-to-r from-green-600 to-green-500 rounded hover:from-green-500 hover:to-green-400 transition-colors"
-                        aria-label="Explore Health Tools">
-                        <span>Explore Tools</span>
+                        aria-label="Open BMI Calculator">
+                        <span>Open Calculator</span>
                         <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -86,7 +81,8 @@
                             Factors</h3>
                         <p class="text-gray-600 dark:text-gray-400 mt-2">Learn about the key factors that contribute to
                             diabetes risk and what you can do about them.</p>
-                        <a href="/resources/article/understanding-diabetes" class="text-blue-500 hover:text-blue-600 inline-flex items-center mt-4">
+                        <a href="/resources/article/understanding-diabetes"
+                            class="text-blue-500 hover:text-blue-600 inline-flex items-center mt-4">
                             Read More
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -102,7 +98,8 @@
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Healthy Eating Guidelines</h3>
                         <p class="text-gray-600 dark:text-gray-400 mt-2">Discover practical tips and guidelines for
                             maintaining a balanced, healthy diet.</p>
-                        <a href="/resources/article/healthy-eating" class="text-blue-500 hover:text-blue-600 inline-flex items-center mt-4">
+                        <a href="/resources/article/healthy-eating"
+                            class="text-blue-500 hover:text-blue-600 inline-flex items-center mt-4">
                             Read More
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
