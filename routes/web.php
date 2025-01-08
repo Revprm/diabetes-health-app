@@ -6,6 +6,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\BmiController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -38,6 +39,11 @@ Route::get('/resources/article/meal-planning', function () {
 Route::get('/resources/article/stress-management', function () {
     return view('article.stress-management');
 });
+
+Route::get('/resources/tools/bmi-calculator', function () {
+    return view('tools.bmi-calculator');
+});
+Route::post('/resources/tools/bmi-calculator', [BmiController::class, 'calculate'])->name('bmi.calculate');
 
 Route::get('/about', function () {
     return view('about');
