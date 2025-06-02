@@ -3,6 +3,9 @@
 ## Overview
 The Diabetes Health App is a web-based application designed to help users evaluate their risk of diabetes. By leveraging a machine learning model deployed on a FastAPI server, the app provides real-time predictions based on user-provided health indicators. The Laravel framework serves as the user interface, ensuring a seamless and secure interaction experience.
 
+## ML API Repository
+[ML API](https://github.com/Revprm/DiabetesHealthIndicator)
+
 ### Key Features:
 - **Intuitive User Interface**: A clean and user-friendly interface for entering health data.
 - **Accurate Predictions**: Real-time analysis using a trained machine learning model.
