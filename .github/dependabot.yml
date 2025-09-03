@@ -3,9 +3,4 @@ updates:
   - package-ecosystem: "npm" # or "pip", "maven", "gradle", etc.
     directory: "/"           # Location of package manifests
     schedule:
-      interval: "daily"      # Check daily
-    allow:
-      - dependency-type: "direct"
-    ignore: []               # Don’t ignore anything
-    # This enables Dependabot security updates
-    security-updates: true
+      interval: "daily"
