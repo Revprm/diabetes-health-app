@@ -1,6 +1,26 @@
 version: 2
 updates:
-  - package-ecosystem: "npm" # or "pip", "maven", "gradle", etc.
-    directory: "/"           # Location of package manifests
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
       interval: "daily"
+    labels:
+      - "dependencies"
+      - "npm"
+    reviewers:
+      - "revprm"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+      - "php"
+    reviewers:
+      - "revprm"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
